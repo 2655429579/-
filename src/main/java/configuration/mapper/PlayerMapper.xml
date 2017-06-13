@@ -6,6 +6,9 @@
         INSERT INTO player(account, passwords, name, sex, profile, city)
         VALUES (#{account},#{passwords},#{name},#{sex},#{profile},#{city})
     </insert>
+    <select id="selectAccount" resultType="java.lang.Integer">
+        SELECT count(account) FROM player WHERE account=#{account}
+    </select>
 
 
 </mapper>
