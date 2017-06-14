@@ -15,10 +15,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @ComponentScan(basePackages = {"controller"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-    @Bean
-    public MultipartResolver multipartResolver(){
-        return new CommonsMultipartResolver();
-    }
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();

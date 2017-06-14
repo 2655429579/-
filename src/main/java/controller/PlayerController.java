@@ -28,10 +28,7 @@ public class PlayerController {
     public boolean insertPlayer(@RequestBody Player player){
         return this.playerService.insertPlayer(player);
     }
-    @GetMapping("getData")
-    public String getData(){
-        return "helloworld";
-    }
+
 
 
 }
