@@ -9,6 +9,15 @@ public class MatchInfo {
     private int vote1;
     private int vote2;
     private boolean status;
+    private int vote;
+
+    public int getVote() {
+        return vote;
+    }
+
+    public void setVote(int vote) {
+        this.vote = vote;
+    }
 
     public boolean isStatus() {
         return status;

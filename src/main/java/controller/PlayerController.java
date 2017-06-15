@@ -2,6 +2,7 @@ package controller;
 
 
 import entities.Player;
+import entities.RankPlayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,5 +43,16 @@ public class PlayerController {
     @GetMapping("player")
     public List<Player> selectAllPlayer(){
         return playerService.selectAllPlayer();
+    }
+
+    @GetMapping("rankPlayer")
+    public List<RankPlayer> selectRankPlayer(){
+        return playerService.selectRankPlayer();
+    }
+
+    @GetMapping("playerInfo")
+    public Player getPlayer(HttpSession session){
+        Player player = (Player) session.getAttribute("player");
+        return playerService.setVoteByPlayerId(player);
     }
 }

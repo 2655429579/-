@@ -9,6 +9,15 @@ public class Player {
     private String profile;
     private String city;
     private String description;
+    private int vote;
+
+    public int getVote() {
+        return vote;
+    }
+
+    public void setVote(int vote) {
+        this.vote = vote;
+    }
 
     public String getDescription() {
         return description;

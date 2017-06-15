@@ -18,4 +18,16 @@
     <select id="selectById" resultType="entities.Player">
         SELECT * FROM player WHERE playerId=#{value}
     </select>
+    <select id="selectRankPlayer" resultType="entities.RankPlayer">
+        select playerId,`name`,`profile`,sex,song1 song,city,description, vote1 vote from `match`,player WHERE
+            player.playerId = `match`.playId1
+        UNION ALL
+        select playerId,`name`,`profile`,sex,song2 song,city,description, vote2 vote from `match`,player WHERE
+            player.playerId = `match`.playId2 ORDER BY vote desc
+    </select>
+    <select id="selectVoteByPlayerId" resultType="java.lang.Integer">
+        select vote1 vote from `match` where playId1 = #{value}
+        UNION
+        select vote2 vote from `match` where playId2 = #{value}
+    </select>
 </mapper>

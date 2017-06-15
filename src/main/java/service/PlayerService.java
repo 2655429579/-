@@ -1,6 +1,7 @@
 package service;
 
 import entities.Player;
+import entities.RankPlayer;
 import mapper.PlayerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,14 @@ public class PlayerService {
 
     public List<Player> selectAllPlayer(){
         return playerMapper.selectAllPlay();
+    }
+
+    public List<RankPlayer> selectRankPlayer(){
+        return playerMapper.selectRankPlayer();
+    }
+
+    public Player setVoteByPlayerId(Player player){
+        player.setVote(playerMapper.selectVoteByPlayerId(player.getPlayerId()));
+        return  player;
     }
 }
