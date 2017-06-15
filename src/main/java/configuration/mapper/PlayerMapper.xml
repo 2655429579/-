@@ -3,12 +3,19 @@
 <mapper namespace="mapper.PlayerMapper">
 
     <insert id="insertPlayer">
-        INSERT INTO player(account, passwords, name, sex, profile, city)
-        VALUES (#{account},#{passwords},#{name},#{sex},#{profile},#{city})
+        INSERT INTO player(account, passwords, name, sex, profile, city,description)
+        VALUES (#{account},#{passwords},#{name},#{sex},#{profile},#{city},#{description})
     </insert>
     <select id="selectAccount" resultType="java.lang.Integer">
         SELECT count(account) FROM player WHERE account=#{account}
     </select>
-
-
+    <select id="selectPlayerByLogin" resultType="entities.Player">
+        SELECT * FROM player WHERE account=#{account} and passwords=#{passwords}
+    </select>
+    <select id="selectAllPlay" resultType="entities.Player">
+        SELECT playerId,profile,name,sex,description,city FROM player ORDER BY playerId DESC
+    </select>
+    <select id="selectById" resultType="entities.Player">
+        SELECT * FROM player WHERE playerId=#{value}
+    </select>
 </mapper>

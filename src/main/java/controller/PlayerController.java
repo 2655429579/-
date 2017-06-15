@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import service.PlayerService;
 
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
 @RestController
 public class PlayerController {
 
@@ -29,6 +32,15 @@ public class PlayerController {
         return this.playerService.insertPlayer(player);
     }
 
+    @PostMapping("login")
+    public boolean login(@RequestBody Player player, HttpSession session){
+        Player player1 = playerService.login(player);
+        session.setAttribute("player",player1);
+        return player1!=null;
+    }
 
-
+    @GetMapping("player")
+    public List<Player> selectAllPlayer(){
+        return playerService.selectAllPlayer();
+    }
 }

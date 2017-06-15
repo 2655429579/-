@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.MatchMapper">
+    <resultMap id="matchMap" type="entities.MatchInfo" autoMapping="true">
+
+        <association   property="player1" select="mapper.PlayerMapper.selectById"
+                      column="playId1" javaType="entities.Player">
+
+        </association>
+
+        <association  property="player2" select="mapper.PlayerMapper.selectById"
+                     column="playId2" />
+    </resultMap>
+    <insert id="insertMatch">
+        INSERT INTO `match`(playId1, playId2, song1, song2)
+        VALUES(#{playId1},#{playId2},#{song1},#{song2})
+    </insert>
+    <insert id="updateMatch">
+        UPDATE `match`
+        <set>
+            <if test="index==1">
+                vote1=#{vote},
+            </if>
+            <if test="index==2">
+                vote2=#{vote},
+            </if>
+        </set>
+        WHERE matchId=#{matchId}
+
+    </insert>
+    <delete id="deleteMatch">
+        DELETE FROM `match` WHERE matchId=#{value}
+    </delete>
+    <select id="selectMatch" resultType="entities.MatchInfo" resultMap="matchMap">
+        SELECT * FROM `match` WHERE status='true' ORDER BY matchId DESC ;
+    </select>
+</mapper>
